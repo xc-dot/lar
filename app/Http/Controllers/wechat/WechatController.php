@@ -14,8 +14,9 @@ class WechatController extends Controller
     }
 
 
-    public function get_user_contents()
+    public function get_user_contents(Request $request)
     {
+        $req = $request->all();
         $result = file_get_contents('https://api.weixin.qq.com/cgi-bin/user/get?access_token='.$this->get_wechat_access_token().'&next_openid=');
         $re = json_decode($result,1);
         $last_info = [];
@@ -26,7 +27,7 @@ class WechatController extends Controller
             $last_info[$k]['openid'] = $v;
         }
         // dd($last_info);
-        return view('wechat/userlist',['info'=>$last_info]);
+        return view('wechat/userlist',['info'=>$last_info,'tagid'=>isset($req['tagid'])?$req['tagid']:'']);
     }
 
     public function get_access_token()
@@ -129,7 +130,7 @@ class WechatController extends Controller
    //模板消息
    public function send_message()
    {
-        $openid = 'oeCJI0dMdwv0Bvhb7Fc-JUzwnFfs';
+        $openid = 'oeCJI0dMdwv0Bvhb7Fc-JUzwnFfs';//发给谁，就是谁的ip
         $url ='http://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$this->tools->get_wechat_access_token();
         $data = [
             'touser'=>$openid,
@@ -150,4 +151,22 @@ class WechatController extends Controller
         $result = json_decode($re,1);
         dd($result);
    }
+   
+ 
+      /**
+     * jssdk获取地理位置
+     */
+    public function location()
+    {
+        $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        
+        $jsapi_ticket = $this->tools->get_wechat_jsapi_ticket();
+        // dd($jsapi_ticket);
+        $timestamp = time();
+        $nonceStr = rand(1000,9999).'suibian';
+        $sign_str = 'jsapi_ticket='.$jsapi_ticket.'&noncestr='.$nonceStr.'&timestamp='.$timestamp.'&url='.$url;
+        $signature = sha1($sign_str);
+        // echo $signature;
+        return view('wechat/location',['nonceStr'=>$nonceStr,'timestamp'=>$timestamp,'signature'=>$signature]);
+    }
 }
