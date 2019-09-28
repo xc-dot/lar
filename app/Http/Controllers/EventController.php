@@ -19,8 +19,8 @@ class EventController extends Controller
      */
     public function event()
     {
-        //  echo $_GET['echostr'];
-        echo '111';
+         echo $_GET['echostr'];
+        // echo '111';
     //     // dd($_POST); 
     //     $xml_string = file_get_contents('php://input');  //获取
     //     $wechat_log_psth = storage_path('logs/wechat/'.date('Y-m-d').'.log');
