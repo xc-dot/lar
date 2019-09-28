@@ -19,7 +19,7 @@ class EventController extends Controller
      */
     public function event()
     {
-        // echo $_GET['echostr'];die;
+         echo $_GET['echostr'];die;
         // echo '111';
         // dd($_POST); 
         $xml_string = file_get_contents('php://input');  //获取
