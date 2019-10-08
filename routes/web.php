@@ -112,3 +112,17 @@ Route::prefix('Agent')->group(function(){
 });
 Route::any('wechat/event','EventController@event');
 // Route::get('aa','EventController@aa');
+/**
+ * 登入页面
+ */
+Route::prefix('hadmin')->group(function(){
+    Route::get('login','hadmin\HadminController@login');
+    Route::post('login_do','hadmin\HadminController@login_do')->name('login_do');
+    Route::post('send','hadmin\HadminController@send');
+});
+/**
+ * 首页页面
+ */
+Route::prefix('hindex')->group(function(){
+    Route::get('hindex','hindex\HindexController@hindex');
+});
