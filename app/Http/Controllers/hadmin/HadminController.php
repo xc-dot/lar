@@ -98,5 +98,5 @@ class HadminController extends Controller
     {
         $openid = Wechat::getOpenid();
         var_dump($openid);die;
-    }
+    } 
 }
