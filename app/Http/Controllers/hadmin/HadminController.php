@@ -46,5 +46,10 @@ class HadminController extends Controller
           //查询数据库
           $adminData = '';
           $openid = $adminData['openid'];
+          //发送的验证码 4位 6位
+          $code =rand(1000,9999);
+        //   $url =  "https://api.weixin.qq.com/cgi-bin/template/api_set_industry?access_token=ACCESS_TOKEN"
     }
+
+    // public function
 }
