@@ -119,6 +119,8 @@ Route::prefix('hadmin')->group(function(){
     Route::get('login','hadmin\HadminController@login');
     Route::post('login_do','hadmin\HadminController@login_do')->name('login_do');
     Route::any('send','hadmin\HadminController@send');
+    Route::any('bind','hadmin\HadminController@bind');
+    Route::any('bind_do','hadmin\HadminController@bind_do');
 });
 /**
  * 首页页面
