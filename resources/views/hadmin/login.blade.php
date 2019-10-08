@@ -50,9 +50,8 @@
 
                 <p class="text-muted text-center"> <a href="login.html#"><small>点击前往微信扫码登录</small></a>
                 <!-- | <a href="register.html">注册一个新账号</a> -->
-                <!-- <img src="5.png" alt=""> -->
                 </p>
-
+                <img src="{{asset('img/5.png')}}" alt="">
             </form>
         </div>
     </div>
@@ -76,7 +75,7 @@
         var password = $("[name='password']").val();
         //向后台发送ajax请求
         $.ajax({
-            url:"{{url('login/send')}}",
+            url:"{{url('hadmin/send')}}",
             data:{username:username,password:password},
             success:function(res){
                 

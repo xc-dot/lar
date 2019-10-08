@@ -5,7 +5,8 @@ namespace App\Http\Controllers\hadmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use seesion;
+use Illuminate\Support\Facades\cookie;
+use Illuminate\Support\Facades\Storage;
 class HadminController extends Controller
 {
     /**
@@ -25,20 +26,25 @@ class HadminController extends Controller
         $adminInfo = DB::table('users')->where(['username'=>$username,'password'=>$password])->first();
         if(!$adminInfo){
             //报错登录失败;
-            die;
-            // return view('hadmin/login');
+            
+            return view('hadmin/login');
         }
-        $adminInfo = $adminInfo->toArray();
+        // $adminInfo = $adminInfo->toArray();
         //登录成功 存储到session中
-        seesion(['adminInfo'=>$adminInfo]);
+        session(['adminInfo'=>$adminInfo]);
         return redirect('hindex/hindex');
 
     }
     /**
      * 发送短信验证码
      */
-    public function send()
+    public function send(Request $request)
     {
-
+          //接受用户名 密码
+          $username =  request('username');
+          $password =  request('password');
+          //查询数据库
+          $adminData = '';
+          $openid = $adminData['openid'];
     }
 }

@@ -118,7 +118,7 @@ Route::any('wechat/event','EventController@event');
 Route::prefix('hadmin')->group(function(){
     Route::get('login','hadmin\HadminController@login');
     Route::post('login_do','hadmin\HadminController@login_do')->name('login_do');
-    Route::post('send','hadmin\HadminController@send');
+    Route::any('send','hadmin\HadminController@send');
 });
 /**
  * 首页页面
