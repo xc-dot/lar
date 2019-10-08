@@ -90,9 +90,7 @@ class HadminController extends Controller
      */
     public function bind()
     {   
-        $openid = Wechat::getOpenid();
-        var_dump($openid);die;
-        return view('hadmin/bind');
+        return view('hadmin.bind');
     }
     public function bind_do()
     {
