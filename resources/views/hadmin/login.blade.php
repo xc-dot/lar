@@ -71,8 +71,10 @@
     $('#send').on('click',function(){
         // alert('123');
         //获取用户名 密码
-        var username = $("[name='username]").val();
+        var username = $("[name='username']").val();
+        // alert(username);
         var password = $("[name='password']").val();
+    
         //向后台发送ajax请求
         $.ajax({
             url:"{{url('hadmin/send')}}",

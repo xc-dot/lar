@@ -41,6 +41,8 @@ class HadminController extends Controller
         $trueCode = session("code");
         if($code != $trueCode){
             //报错登录失败；
+            // return view('hadmin/login');
+            die;
         }
         // $adminInfo = $adminInfo->toArray();
         //登录成功 存储到session中
@@ -53,37 +55,42 @@ class HadminController extends Controller
      */
     public function send(Request $request)
     {
-          //接受用户名 密码
-          $username =  request('username');
-          $password =  request('password');
-          //查询数据库
-          $adminData = '';
-          $openid = $adminData['openid'];
-          //发送的验证码 4位 6位
-          $code =rand(1000,9999);
-          $url =  'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$this->tools->get_wechat_access_token();
-          $arsg = '{
-                
-                "touser":"oeCJI0RjFEbnj5UEazbgqK2tFkBM",
-                "template_id":"6OlMnK9d7Ogp6GyAI5hneNRlsarxQaVvhL8Iq4yugFE",      
-                "data":{
-                        "code": {
-                            "value":"'.$code.'",
-                            "color":"#173177"
-                        },
-                        "name":{
-                            "value":"'.$username.'",
-                            "color":"#173177"
-                        },
-                        "time":{
-                            "value":"'.time().'",
-                            "color":"#173177"
-                        },
-                       
-                }
-
-            }'; 
-            Curl::post($url,$args);
+                $req=$request->all();
+            //    dd($req);
+                //接收用户名 密码
+                $name=$request->input('username');
+            //   dd($name);
+                $password=$request->input('password');
+                //发送验证码 4位 6位
+                $code=rand(1000,9999);
+                $url = 'http://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$this->tools->get_wechat_access_token();
+            //    dd($url);
+                //参数
+                $data=[
+                    'touser'=>'oeCJI0RjFEbnj5UEazbgqK2tFkBM',
+                    'template_id'=>'6OlMnK9d7Ogp6GyAI5hneNRlsarxQaVvhL8Iq4yugFE',
+                    'data'=>[
+                        'code'=>[
+                            'value'=>$code,
+                            'color'=>''
+                        ],
+                        'name'=>[
+                            'value'=>$name,
+                            'color'=>''
+                        ],
+                        'time'=>[
+                            'value'=>time(),
+                            'color'=>''
+                        ],
+        
+        
+                    ]
+                ];
+            //    dd($data);
+                $re=$this->tools->curl_post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
+                // dd($re);
+                $result=json_decode($re,1);
+                dd($result);
     }
     /**
      * 微信账号绑定页面
