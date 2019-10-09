@@ -110,14 +110,14 @@ Route::prefix('Agent')->group(function(){
     Route::get('agent_list','Agent\AgentController@agent_list');
     Route::get('create_qrcode','Agent\AgentController@create_qrcode');//创建二维码
 });
-Route::any('wechat/event','EventController@event');
+// Route::any('wechat/event','EventController@event');
 // Route::get('aa','EventController@aa');
 /**
  * 登入页面
  */
 Route::prefix('hadmin')->group(function(){
-    Route::get('login','hadmin\HadminController@login');
-    Route::post('login_do','hadmin\HadminController@login_do')->name('login_do');
+    Route::any('login','hadmin\HadminController@login');
+    Route::any('login_do','hadmin\HadminController@login_do')->name('login_do');
     Route::any('send','hadmin\HadminController@send');
     Route::any('bind','hadmin\HadminController@bind');
     Route::any('bind_do','hadmin\HadminController@bind_do');
@@ -126,5 +126,5 @@ Route::prefix('hadmin')->group(function(){
  * 首页页面
  */
 Route::prefix('hindex')->group(function(){
-    Route::get('hindex','hindex\HindexController@hindex');
+    Route::any('hindex','hindex\HindexController@hindex');
 });

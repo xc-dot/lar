@@ -42,7 +42,8 @@
                     <input type="password" class="form-control" placeholder="密码" required="" name='password'>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name='sond' style='width:65%;float:left' placeholder='微信验证码'>
+                    <input type="text" class="form-control" style='width:65%;float:left' placeholder='微信验证码' name='code'>
+                    
                     <input type="button" class='btn btn-info' value='发送验证码' id='send'>
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>

@@ -10,7 +10,7 @@ class Wechat
     const appid ="wxab1ca693339edde0";
     const secret="bc6782b6f7cf199de49732ad2b67645d";
 
-    /**
+   /**
 	* 网页授权获取用户openid
 	* @return [type] [description]
 	*/
@@ -31,6 +31,7 @@ class Wechat
             $uri = $_SERVER['REQUEST_URI']; //路由参数
             $redirect_uri = urlencode("http://".$host.$uri);  // ?code=xx
             $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".self::appid."&redirect_uri={$redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+            // dd($url);
             header("location:".$url);die;
         }else{
             //通过code换取网页授权access_token
