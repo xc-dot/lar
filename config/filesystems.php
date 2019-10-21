@@ -45,7 +45,8 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'.DIRECTORY_SEPARATOR.'public'),
+            // 'root' => storage_path('app'.DIRECTORY_SEPARATOR.'public'),
+            'root' => public_path(),
         ],
 
         'public' => [

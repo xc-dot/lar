@@ -110,7 +110,7 @@ Route::prefix('Agent')->group(function(){
     Route::get('agent_list','Agent\AgentController@agent_list');
     Route::get('create_qrcode','Agent\AgentController@create_qrcode');//创建二维码
 });
-// Route::any('wechat/event','EventController@event');
+Route::any('wechat/event','EventController@event');
 // Route::get('aa','EventController@aa');
 /**
  * 登入页面
